@@ -54,11 +54,6 @@ class Simulation:
 
     def guess_matches(self):
         '''Randomize guesses for perfect couples'''
-        # self.guess = Matches(self.contestants)
-        # check = True
-        # while check:
-        #     check = any(match in self.bad_matches for match in self.guess.matches)
-        #     self.guess = Matches(self.contestants)
         random_matches = []
         temp_contestants = self.contestants.copy()
         
@@ -82,12 +77,10 @@ class Simulation:
     def analyze_matches(self):
         '''Return number of correct perfect couples'''
         self.count = len(self.matches_found)
-        # for match in self.guess.matches:
         for match in self.guess:
             if match in self.game.matches: self.count += 1
 
         if self.count == len(self.matches_found):
-            # for match in self.guess.matches:
             for match in self.guess:
                 self.bad_matches.append(match)
 
@@ -98,7 +91,6 @@ class Simulation:
         Random couple is sent to "truth booth"
         Returns string indicating if match is correct
         '''
-        # self.random_couple = random.choice(self.guess.matches)
         self.random_couple = random.choice(self.guess)
         if self.random_couple in self.game.matches:
             for contestant in self.random_couple:
@@ -113,7 +105,6 @@ class Simulation:
 def start_sim():
     global names
     names = ['Sherri','Gunther','Clinton','Karl','Douglas','Suzanne','Jules','Jerold','Raymond','Annette','Alina','Gabriela','Maria','Placida','Mariano','Vincent']
-    # contestants = ContestantList(names).output()
     sim = Simulation(names)
     print(f'Contestants: {sim.game.contestants}')
     finish = False
