@@ -19,7 +19,7 @@ class Matches:
     This is done with random generation to best simulate how matches would be formed in a real reality TV show game (there should be no systematic approach to predict matches)
     '''
 
-    def __init__(self, contestants,bad_matches):
+    def __init__(self, contestants,bad_matches=[]):
         '''Initialize contestant list and perfect matches'''
 
         # initialize bad matches with passed in list
@@ -106,7 +106,7 @@ class Simulation:
         self.bad_matches = []
 
         # create instance of Matches class that holds the perfect matches that will be used the goal of the game
-        self.game = Matches(self.contestants,self.bad_matches)
+        self.game = Matches(self.contestants)
 
         # initialize list of confirmed matches that will be updated in .truth_booth()
         self.matches_found = []
@@ -203,7 +203,7 @@ def start_sim():
 
         # number of perfect matches is announced
         analyze = sim.analyze_matches()
-        print(analyze)
+        if sim.count != len(sim.game.matches): print(analyze) 
 
         # if this number is equal to the amount of perfect matches needed, the game is over
         if sim.count == len(sim.game.matches):
