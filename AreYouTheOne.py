@@ -91,20 +91,20 @@ class Simulation:
 
     def __init__(self,names):
         '''Initialize game'''
-        
+
         # set up empty list of contestants to append to
         contestants = []
-        
+
         # create Contestant objects
         for name in names:
             contestants.append(Contestant(name))
-        
+
         # initialize list of Contestant objects
         self.contestants = contestants
-        
+
         # initialize list of bad matches that will be updated in .analyze_matches() and .truth_booth()
         self.bad_matches = []
-        
+
         # create instance of Matches class that holds the perfect matches that will be used the goal of the game
         self.game = Matches(self.contestants,self.bad_matches)
 
@@ -113,7 +113,7 @@ class Simulation:
 
     def guess_matches(self):
         '''Randomize guesses for perfect couples'''
-        
+
         # create instance of Matches class
         self.guess = Matches(self.contestants,self.bad_matches)
 
@@ -122,7 +122,7 @@ class Simulation:
 
     def analyze_matches(self):
         '''Return number of correct perfect couples'''
-        
+
         # initialize count starting at the number of matches already found
         self.count = len(self.matches_found)
 
@@ -138,7 +138,7 @@ class Simulation:
                 self.bad_matches.append(match)
 
         # return how many couples are correct
-        return f'{self.count} couples are correct!'
+        return f'{self.count} matches are correct!'
 
     def truth_booth(self):
         '''
@@ -147,10 +147,10 @@ class Simulation:
         '''
         # send a random couple to the truth booth
         self.random_couple = random.choice(self.guess.matches)
-        
+
         # if this couple is a perfect match...
         if self.random_couple in self.game.matches:
-            
+
             # remove contestants from remaining contestants list
             for contestant in self.random_couple:
                 self.contestants.remove(contestant)
@@ -160,13 +160,13 @@ class Simulation:
 
             # return that the pair is a perfect match
             return f'{list(self.random_couple)[0]} and {list(self.random_couple)[1]} are a perfect match!'
-        
+
         # if this couple is a bad match...
         else:
-            
+
             # add pair to bad matches list
             if self.random_couple not in self.bad_matches: self.bad_matches.append(self.random_couple)
-            
+
             # return that the pair is not a perfect match
             return f'{list(self.random_couple)[0]} and {list(self.random_couple)[1]} are NOT a match!'
 
@@ -207,10 +207,14 @@ def start_sim():
 
         # if this number is equal to the amount of perfect matches needed, the game is over
         if sim.count == len(sim.game.matches):
-            print('All matches found!')                     # announce the game is over
-            print(f'Perfect matches: {sim.game.matches}')   # announce what the perfect matches are
+            # announce the game is over
+            print('All matches found!')
 
-            return                                          # end function
+            # announce what the perfect matches are
+            print(f'\nPerfect matches: {list(sim.game.matches[0])[0]} and {list(sim.game.matches[0])[1]}, {list(sim.game.matches[1])[0]} and {list(sim.game.matches[1])[1]}, {list(sim.game.matches[2])[0]} and {list(sim.game.matches[2])[1]}, {list(sim.game.matches[3])[0]} and {list(sim.game.matches[3])[1]}, {list(sim.game.matches[4])[0]} and {list(sim.game.matches[4])[1]}, {list(sim.game.matches[5])[0]} and {list(sim.game.matches[5])[1]}, {list(sim.game.matches[6])[0]} and {list(sim.game.matches[6])[1]}, {list(sim.game.matches[7])[0]} and {list(sim.game.matches[7])[1]}')
+
+            # end function
+            return
 
         # if the number of correct couples is not the same as the number of correct couples already found (in this case there would be no new matches)
         if sim.count != len(sim.matches_found):
