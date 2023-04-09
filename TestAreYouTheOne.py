@@ -104,7 +104,17 @@ class Test_Simulation(unittest.TestCase):
         # assert that analyze_matches finds that 2 matches are correct in s1
         self.assertEqual(self.s1.analyze_matches(),f'2 matches are correct!')
 
-        ### TO DO: test that bad_matches is updated if counter is equal to number of matches from previous week
+        # test that bad_matches is updated if counter is equal to number of matches from previous week
+        self.s2 = Simulation(self.names)
+        self.s2.guess_matches()
+        self.s2.game.matches = [{self.s2.contestants[0],self.s2.contestants[3]},{self.s2.contestants[1],self.s2.contestants[2]}]
+       
+        # Bad guesses to test that analyze_matches properly updates bad matches
+        self.s2.guess.matches = [{self.s2.contestants[1],self.s2.contestants[3]},{self.s2.contestants[0],self.s2.contestants[2]}]
+        
+        # Analyze (should update bad_matches with the two bad guesses)
+        self.s2.analyze_matches()
+        self.assertEqual(len(self.s2.bad_matches),2)
 
     def test_truth_booth(self):
         'Tests that matches_found is updated with a correct match'
@@ -115,7 +125,25 @@ class Test_Simulation(unittest.TestCase):
         # calling .truth_booth() once on a list of entirely correct matches should increment matches_found to 1
         self.assertEqual(len(self.s1.matches_found),1)
 
-        ### TO DO: test that contestants are removed upon successful match, test that bad matches are added upon unsuccessful match
+        # Test that contestants are removed upon successful match, test that bad matches are added upon unsuccessful match
+        
+        # Set up simulation for this case
+        self.s3 = Simulation(self.names)
+        self.s3.guess_matches()
+        
+        self.s3.game.matches = [{self.s3.contestants[0],self.s3.contestants[3]},{self.s3.contestants[1],self.s3.contestants[2]}]
+        # Good guesses (contestants should be removed)
+        self.s3.guess.matches = [{self.s3.contestants[0],self.s3.contestants[3]}]
+        
+        # Store contestant objects to be able to check membership after removal
+        match_contestant1 = self.s3.contestants[0]
+        match_contestant2 = self.s3.contestants[3]
+
+        # Call truth booth
+        self.s3.truth_booth()
+        # Assert contestants are removed
+        self.assertTrue(match_contestant1 not in self.s3.contestants)
+        self.assertTrue(match_contestant2 not in self.s3.contestants)
 
 if __name__ == "__main__":
     unittest.main()
