@@ -179,8 +179,9 @@ def start_sim():
     # start an instance of the simulation
     sim = Simulation(names)
 
-    # print a list of all contestants at the start of the game
-    print(f'The contestants for this season are: {sim.contestants[0]}, {sim.contestants[1]}, {sim.contestants[2]}, {sim.contestants[3]}, {sim.contestants[4]}, {sim.contestants[5]}, {sim.contestants[6]}, {sim.contestants[7]}, {sim.contestants[8]}, {sim.contestants[9]}, {sim.contestants[10]}, {sim.contestants[11]}, {sim.contestants[12]}, {sim.contestants[13]}, {sim.contestants[14]}, and {sim.contestants[15]}')
+    if __name__ == '__main__':
+        # print a list of all contestants at the start of the game
+        print(f'The contestants for this season are: {sim.contestants[0]}, {sim.contestants[1]}, {sim.contestants[2]}, {sim.contestants[3]}, {sim.contestants[4]}, {sim.contestants[5]}, {sim.contestants[6]}, {sim.contestants[7]}, {sim.contestants[8]}, {sim.contestants[9]}, {sim.contestants[10]}, {sim.contestants[11]}, {sim.contestants[12]}, {sim.contestants[13]}, {sim.contestants[14]}, and {sim.contestants[15]}')
 
     # initialize while loop to allow game to continue until all matches are found
     # contains the actions that happen each week
@@ -195,26 +196,30 @@ def start_sim():
         # increment week counter
         week += 1
 
-        # add "Week #" header for readability
-        print(f'\nWeek {week}\n----------------------')
+        if __name__ == '__main__':
+            # add "Week #" header for readability
+            print(f'\nWeek {week}\n----------------------')
 
         # contestants form pairs
         sim.guess_matches()
 
         # number of perfect matches is announced
         analyze = sim.analyze_matches()
-        if sim.count != len(sim.game.matches): print(analyze) 
+        if sim.count != len(sim.game.matches): 
+            if __name__ == '__main__':
+                print(analyze) 
 
         # if this number is equal to the amount of perfect matches needed, the game is over
         if sim.count == len(sim.game.matches):
-            # announce the game is over
-            print('All matches found!')
+            if __name__ == '__main__':
+                # announce the game is over
+                print('All matches found!')
 
-            # announce what the perfect matches are
-            print(f'\nPerfect matches: {list(sim.game.matches[0])[0]} and {list(sim.game.matches[0])[1]}, {list(sim.game.matches[1])[0]} and {list(sim.game.matches[1])[1]}, {list(sim.game.matches[2])[0]} and {list(sim.game.matches[2])[1]}, {list(sim.game.matches[3])[0]} and {list(sim.game.matches[3])[1]}, {list(sim.game.matches[4])[0]} and {list(sim.game.matches[4])[1]}, {list(sim.game.matches[5])[0]} and {list(sim.game.matches[5])[1]}, {list(sim.game.matches[6])[0]} and {list(sim.game.matches[6])[1]}, {list(sim.game.matches[7])[0]} and {list(sim.game.matches[7])[1]}')
+                # announce what the perfect matches are
+                print(f'\nPerfect matches: {list(sim.game.matches[0])[0]} and {list(sim.game.matches[0])[1]}, {list(sim.game.matches[1])[0]} and {list(sim.game.matches[1])[1]}, {list(sim.game.matches[2])[0]} and {list(sim.game.matches[2])[1]}, {list(sim.game.matches[3])[0]} and {list(sim.game.matches[3])[1]}, {list(sim.game.matches[4])[0]} and {list(sim.game.matches[4])[1]}, {list(sim.game.matches[5])[0]} and {list(sim.game.matches[5])[1]}, {list(sim.game.matches[6])[0]} and {list(sim.game.matches[6])[1]}, {list(sim.game.matches[7])[0]} and {list(sim.game.matches[7])[1]}')
 
             # end function
-            return
+            return week
 
         # if the number of correct couples is not the same as the number of correct couples already found (in this case there would be no new matches)
         if sim.count != len(sim.matches_found):
@@ -222,15 +227,20 @@ def start_sim():
             # send one couple to the truth booth to see if they are a perfect match
             truth = sim.truth_booth()
 
-            # announce who will be sent to the truth booth and if they are a perfect match
-            print(f'\n{list(sim.random_couple)[0]} and {list(sim.random_couple)[1]} have been sent to the truth booth!')
-            print(truth)
+            if __name__ == '__main__':
+                # announce who will be sent to the truth booth and if they are a perfect match
+                print(f'\n{list(sim.random_couple)[0]} and {list(sim.random_couple)[1]} have been sent to the truth booth!')
+                print(truth)
 
         # if this is the case, announce there are no new correct matches
-        else: print('No new correct matches')
+        else: 
+            if __name__ == '__main__':
+                print('No new correct matches')
 
-        # at the end of each week, announce how many matches have been confirmed so far
-        print(f'\nConfirmed matches: {len(sim.matches_found)}')
+        if __name__ == '__main__':
+            # at the end of each week, announce how many matches have been confirmed so far
+            print(f'\nConfirmed matches: {len(sim.matches_found)}')
 
-# start simulation
-start_sim()
+if __name__ == '__main__':
+    # start simulation
+    start_sim()
