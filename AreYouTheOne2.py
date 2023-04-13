@@ -1,3 +1,13 @@
+### ALGORITHM 2 ###
+'''
+Uses full functionality of gathering bad matches
+1) Add bad match if truth booth indicates couple is not a match
+2) Add bad matches if # of correct matches found is identical to # of correct guesses (no new correct guesses)
+3) Add bad matches if only one new correct guess AND truth booth pulls this one guess
+
+This should be the second fastest algorithm as it does not benefit from the added attributes of Algorithm 1, but uses full funcitonality of gathering bad matches that the subsequent algorithms do not
+'''
+
 # Import random and math modules
 import random
 from math import factorial as fact  # import factorial from math
@@ -61,16 +71,10 @@ class Matches:
                     random_pair_set = set(random.choices(temp_contestants,k=2))
 
                     # if re-generation attempts exceed the maximum number of possibilities, break out of loop to restart entire list
-                    if  count >= max_loops:
+                    if count >= max_loops and random_pair_set in self.bad_matches: break
 
-                        # if still a bad pair on last final attempt, break out of loop, otherwise will continue
-                        if random_pair_set in self.bad_matches:
-                            break
-
-                # same as previous two if statements to break out of the for loop as well
-                if count >= max_loops:
-                    if random_pair_set in self.bad_matches:
-                        break
+                # same as previous two if statement conditions to break out of the for loop as well
+                if count >= max_loops and random_pair_set in self.bad_matches: break
 
                 # add the pair to the list of matches
                 random_matches.append(random_pair_set)
