@@ -1,24 +1,84 @@
 if __name__ == '__main__':
 
-    from AreYouTheOne import *
+    # imports
+    from AreYouTheOne1 import start_sim as sim1
+    from AreYouTheOne2 import start_sim as sim2
+    from AreYouTheOne3 import start_sim as sim3
+    from AreYouTheOne4 import start_sim as sim4
+    from AreYouTheOne5 import start_sim as sim5
     import matplotlib.pyplot as plt
     import numpy as np
-    from statistics import mean,median
+    from statistics import mean
 
     # initialize list to store data
     data = list()
-
     # run simulation 100 times and add game length to data set
     for i in range(100):
-        data.append(start_sim())
+        data.append(sim1())
+
+    # initiialize data2
+    data2 = list()
+    # run simulation 100 times and add game length to data set
+    for i in range(100):
+        data2.append(sim2())
+
+    # initialize data3
+    data3 = list()
+    # run simulation 100 times and add game length to data set
+    for i in range(100):
+        data3.append(sim3())
+
+    # initialize data4
+    data4 = list()
+    # run simulation 100 times and add game length to data set
+    for i in range(100):
+        data4.append(sim4())
+
+    # initialize data5
+    data5 = list()
+    # run simulation 100 times and add game length to data set
+    for i in range(100):
+        data5.append(sim5())
+    
 
     # Create and display histogram
-    plt.hist(data, range=(0,150), bins=150,label='Algorithm 3')
+    plt.hist(data, range=(0,200), bins=200,label='Algorithm 1',alpha=.5,color="red")            # 1- Additional attributes for matching algorithm
+    plt.hist(data2, range=(0,200), bins=200,label='Algorithm 2',alpha=.5,color="royalblue")     # 2- No added attributes, but full use of filtering bad matches (truth booth and special circumstances)
+    plt.hist(data3, range=(0,200), bins=200,label='Algorithm 3',alpha=.5,color="orange")        # 3- Correct guesses are saved AND bad matches from truth booth are saved
+    plt.hist(data4, range=(0,200), bins=200,label='Algorithm 4',alpha=.5,color="limegreen")     # 4- Correct guesses are saved for future guesses
+    plt.hist(data5, range=(0,200), bins=200,label='Algorithm 5',alpha=.5,color="violet")        # 5- Completely random guesses each week
+    
+    ### Mean indicators ###
+
+    # Get y axis bounds
+    min_ylim,max_ylim = plt.ylim()
+
+    # Algorithm 1
+    plt.axvline(mean(data),color='r',linestyle='dashed',linewidth=1)
+    plt.text(0,max_ylim*.9,f'Mean\n {mean(data)}',size=10)
+
+    # Algorithm 2
+    plt.axvline(mean(data2),color='b',linestyle='dashed',linewidth=1)
+    plt.text(mean(data2)*1.1,max_ylim*.9,f'Mean\n{mean(data2)}',size=10)
+
+    # Algorithm 3
+    plt.text(mean(data3)*.78,max_ylim*.65,f'Mean\n{mean(data3)}',size=10)
+    plt.axvline(mean(data3),color='#FFA500',linestyle='dashed',linewidth=1)
+
+    # Algorithm 4
+    plt.axvline(mean(data4),color='g',linestyle='dashed',linewidth=1)
+    plt.text(mean(data4)*1.02,max_ylim*.8,f'Mean\n{mean(data4)}',size=10)
+
+    # Algorithm 5
+    plt.axvline(mean(data5),color='#8F00FF',linestyle='dashed',linewidth=1)
+    plt.text(mean(data5)*1.02,max_ylim*.8,f'Mean\n{mean(data5)}',size=10)
+
+
+    # Title, axes, legend
     plt.title('Algorithm Comparison\nFrequency of Game Length (100 trials)')
     plt.xlabel('Weeks')
     plt.ylabel('Frequency')
-    plt.axvline(mean(data),color='k',linestyle='dashed',linewidth=1)
-    min_ylim,max_ylim = plt.ylim()
-    plt.text(mean(data)*1.2,max_ylim*.95,f'Mean: {mean(data)}')
     plt.legend(loc='upper right')
+    
+    # Display
     plt.show()
