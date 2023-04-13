@@ -1,5 +1,5 @@
 import unittest,random
-from AreYouTheOne import Contestant,Matches,Simulation
+from AreYouTheOne2 import Contestant,Matches,Simulation
 
 class Test_Contestant(unittest.TestCase):
     'Test Contestant class'
