@@ -1,7 +1,6 @@
 ### ALGORITHM 4 ###
 '''
 Uses full random generation BUT removes contestants upon successful truth booth visit (limits possible guess pool)
-Should be faster than Algorithm 5 and have less variation
 '''
 
 # Import random and math modules
