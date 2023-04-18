@@ -5,11 +5,9 @@ if __name__ == '__main__':
     from AreYouTheOne2 import start_sim as sim2
     from AreYouTheOne3 import start_sim as sim3
     from AreYouTheOne4 import start_sim as sim4
-    from AreYouTheOne5 import start_sim as sim5
     import matplotlib.pyplot as plt
     import numpy as np
     from statistics import mean
-
     # initialize list to store data
     data = list()
     # run simulation 100 times and add game length to data set
@@ -34,19 +32,11 @@ if __name__ == '__main__':
     for i in range(100):
         data4.append(sim4())
 
-    # initialize data5
-    data5 = list()
-    # run simulation 100 times and add game length to data set
-    for i in range(100):
-        data5.append(sim5())
-    
-
     # Create and display histogram
-    plt.hist(data, range=(0,200), bins=200,label='Algorithm 1',alpha=.5,color="red")            # 1- Additional attributes for matching algorithm
-    plt.hist(data2, range=(0,200), bins=200,label='Algorithm 2',alpha=.5,color="royalblue")     # 2- No added attributes, but full use of filtering bad matches (truth booth and special circumstances)
-    plt.hist(data3, range=(0,200), bins=200,label='Algorithm 3',alpha=.5,color="orange")        # 3- Correct guesses are saved AND bad matches from truth booth are saved
-    plt.hist(data4, range=(0,200), bins=200,label='Algorithm 4',alpha=.5,color="limegreen")     # 4- Correct guesses are saved for future guesses
-    plt.hist(data5, range=(0,200), bins=200,label='Algorithm 5',alpha=.5,color="violet")        # 5- Completely random guesses each week
+    plt.hist(data, range=(0,140), bins=140,label='Algorithm 1',alpha=.5,color="red")            # 1- Additional attributes for matching algorithm
+    plt.hist(data2, range=(0,140), bins=140,label='Algorithm 2',alpha=.5,color="royalblue")     # 2- No added attributes, but full use of filtering bad matches (truth booth and special circumstances)
+    plt.hist(data3, range=(0,140), bins=140,label='Algorithm 3',alpha=.5,color="orange")        # 3- Correct guesses are saved AND bad matches from truth booth are saved
+    plt.hist(data4, range=(0,140), bins=140,label='Algorithm 4',alpha=.5,color="limegreen")     # 4- Correct guesses are saved for future guesses
     
     ### Mean indicators ###
 
@@ -68,10 +58,6 @@ if __name__ == '__main__':
     # Algorithm 4
     plt.axvline(mean(data4),color='g',linestyle='dashed',linewidth=1)
     plt.text(mean(data4)*1.02,max_ylim*.8,f'Mean\n{mean(data4)}',size=10)
-
-    # Algorithm 5
-    plt.axvline(mean(data5),color='#8F00FF',linestyle='dashed',linewidth=1)
-    plt.text(mean(data5)*1.02,max_ylim*.8,f'Mean\n{mean(data5)}',size=10)
 
 
     # Title, axes, legend
