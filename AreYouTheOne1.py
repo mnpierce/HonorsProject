@@ -7,9 +7,8 @@ This allows the contestants to have more educated guesses when deciding who they
 This algorithm also uses the full funcitonality of gathering bad matches as demonstrated in Algorithm 2
 '''
 
-# Import random and math module
-import random,sys
-from math import factorial as fact
+# Import random module
+import random
 
 class Contestant:
     '''Set up contestant objects'''
@@ -124,13 +123,7 @@ class CreateMatches:
         for i in range(len(temp_contestants)//2):
 
             # get two random contestants from the contestants list
-            perfect_match = set(random.choices(temp_contestants,k=2))
-
-            # use while loop to handle if the same contestant is randomly chosen e.g. {Mariano}
-            while len(perfect_match) == 1:
-
-                # re-generate the pair
-                perfect_match = set(random.choices(temp_contestants,k=2))
+            perfect_match = set(random.sample(temp_contestants,2))
 
             # add the pair to the list of matches
             self.matches.append(perfect_match)
@@ -248,13 +241,7 @@ class GuessMatches:
         for i in range(len(temp_contestants)//2):
 
             # get two random contestants from the contestants list
-            guess = set(random.choices(temp_contestants,k=2))
-
-            # use while loop to handle if the same contestant is randomly chosen e.g. {Mariano}
-            while len(guess) == 1:
-
-                # re-generate the pair
-                guess = set(random.choices(temp_contestants,k=2))
+            guess = set(random.sample(temp_contestants,k=2))
 
             # add the pair to the list of matches
             self.matches.append(guess)

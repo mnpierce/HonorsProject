@@ -28,39 +28,24 @@ class Matches:
     def __init__(self, contestants):
         '''Initialize contestant list and perfect matches'''
 
-        # use while loop to add functionality to restart the whole list if there is no way to make a valid list during any given attempt
-        # this would happen if the only possible matches remaining are already in the bad matches list
-        keepgoing = True
-        while keepgoing:
+        # initialize matches list to add to
+        random_matches = []
 
-            # initialize matches list to add to
-            random_matches = []
+        # create temporary contestants list to modify
+        temp_contestants = contestants.copy()
 
-            # create temporary contestants list to modify
-            temp_contestants = contestants.copy()
+        # use for loop that runs the exact amount of times needed to create the right amount of pairs
+        for i in range(len(contestants)//2):
 
-            # use for loop that runs the exact amount of times needed to create the right amount of pairs
-            for i in range(len(contestants)//2):
+            # get two random contestants from the contestants list
+            random_pair_set = set(random.sample(temp_contestants,k=2))
 
-                # get two random contestants from the contestants list
-                random_pair_set = set(random.choices(temp_contestants,k=2))
+            # add the pair to the list of matches
+            random_matches.append(random_pair_set)
 
-                # use while loop to handle if the same contestant is randomly chosen e.g. {Mariano}
-                while len(random_pair_set) == 1:
-
-                    # re-generate the pair
-                    random_pair_set = set(random.choices(temp_contestants,k=2))
-
-                # add the pair to the list of matches
-                random_matches.append(random_pair_set)
-
-                # remove the contestants that have been matched from the temporary list so they are not used again
-                temp_contestants.remove(list(random_pair_set)[0])
-                temp_contestants.remove(list(random_pair_set)[1])
-
-                # if no contestants remain, the full list is generated and the while loop can terminate
-                if len(temp_contestants) == 0:
-                    keepgoing = False
+            # remove the contestants that have been matched from the temporary list so they are not used again
+            temp_contestants.remove(list(random_pair_set)[0])
+            temp_contestants.remove(list(random_pair_set)[1])
 
         # initialize matches to be used in composition in other classes
         self.matches = random_matches

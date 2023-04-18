@@ -49,25 +49,21 @@ class Matches:
             for i in range(len(contestants)//2):
 
                 # get two random contestants from the contestants list
-                random_pair_set = set(random.choices(temp_contestants,k=2))
+                random_pair_set = set(random.sample(temp_contestants,2))
 
                 # calculate the number possible pair permutations given the number of contestants
                 n = len(temp_contestants)
                 r = 2
                 max_loops = int(fact(n) / (fact(n-r)*fact(r)))
 
-                # use while loop to handle bad generated pairs
-                # cases:
-                #   1) The same contestant is randomly chosen e.g. {Mariano}
-                #   2) The pair is already in the list of bad matches
-
+                # random generation may force the only remaining possible pairs to already be in bad_matches, so may need to restart guess entirely
                 count = 0   # counter
 
-                while len(random_pair_set) == 1 or random_pair_set in self.bad_matches:
+                while random_pair_set in self.bad_matches:
                     count += 1  # increment counter
 
                     # re-generate the pair
-                    random_pair_set = set(random.choices(temp_contestants,k=2))
+                    random_pair_set = set(random.sample(temp_contestants,2))
 
                     # if re-generation attempts exceed the maximum number of possibilities, break out of loop to restart entire list
                     if  count >= max_loops:
