@@ -1,6 +1,6 @@
-CSE 2050-001 Honors Project 2023                                                                Matt Pierce
+CSE 2050-001 Honors Project 2023
 -----------------------------------------------------------------------------------------------------------
-Simulation of MTV's "Are You the One?"
+Simulation of MTV's "Are You the One?" by Matt Pierce
 -----------------------------------------------------------------------------------------------------------
 
 Rules
