@@ -5,7 +5,7 @@ Simulation of MTV's "Are You the One?" by Matt Pierce
 
 Rules
   
-  16 contestants get paired into 8 “perfect matches”
+  16 contestants get paired into 8 "perfect matches"
   
 Each week:
    - Contestants couple up with who they think their perfect match is
