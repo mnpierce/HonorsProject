@@ -1,9 +1,6 @@
-CSE 2050-001 Honors Project 2023
-Matt Pierce
+CSE 2050-001 Honors Project 2023                                                                Matt Pierce
 -----------------------------------------------------------------------------------------------------------
-
 Simulation of MTV's "Are You the One?"
-
 -----------------------------------------------------------------------------------------------------------
 
 Rules
@@ -16,7 +13,7 @@ Rules
     - One couple is sent to the “truth booth” for a definitive result of whether they are a prefect match
       
 -----------------------------------------------------------------------------------------------------------
-   
+
 Approach
 
   - Create 16 contestants and randomly select the 8 perfect pairs
