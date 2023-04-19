@@ -7,7 +7,7 @@ Rules
   
    - 16 contestants get paired into 8 "perfect matches"
   
-   Each week:
+Each week:
    - Contestants couple up with who they think their perfect match is
    - Contestants are told the number of correct couples (but not which couples are correct)
    - One couple is sent to the “truth booth” for a definitive result of whether they are a prefect match
