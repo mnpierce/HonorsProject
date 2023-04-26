@@ -29,5 +29,7 @@ The algorithm I spent the most time developing is Algorithm 2. This algorithm fe
 
 A brief description of each algorithm can also be found at the top of each algorithm file.
 
+-----------------------------------------------------------------------------------------------------------
+
 ### Preview of Result
 ![Histogram](https://user-images.githubusercontent.com/126021680/234602091-d40389dc-0afd-48eb-b14f-58a946a851a1.png)
