@@ -16,7 +16,7 @@ class Contestant:
     fav_color = ['blue','red','green']
 
     def __init__(self,name):
-        '''Initialize name''' 
+        '''Initialize name'''
         self.name = name
         self.team = random.choice(Contestant.baseball_team)
         self.color = random.choice(Contestant.fav_color)
@@ -55,17 +55,17 @@ class CreateMatches:
 
             # add contestant to list of visited contestants
             contestants_visited.add(contestant1)
-            
+
             # shuffle to assure the same guesses aren't being generated every time for the same contestant1
             random.shuffle(temp_contestants)
 
             # iterate through contestants
-            for contestant2 in temp_contestants:               
+            for contestant2 in temp_contestants:
                 # if the contestants are not the same person...
                 if contestant1 != contestant2:
                     # if the contestants have the same favorite baseball team and color...
                     if contestant1.team == contestant2.team and contestant1.color == contestant2.color:
-                        
+
                         # add each contestant into a set denoting a perfect match
                         perfect_match = set([contestant1,contestant2])
                         # add the set to the list of perfect matches
@@ -74,7 +74,7 @@ class CreateMatches:
                         # remove each contestant from the list so they are not used again
                         temp_contestants.remove(contestant1)
                         temp_contestants.remove(contestant2)
-                        
+
                         break # break out of for loop
 
         # iniitialize visited contestants list
@@ -93,17 +93,17 @@ class CreateMatches:
 
             # add contestant to list of visited contestants
             contestants_visited.add(contestant1)
-            
+
             # shuffle to assure the same guesses aren't being generated every time for the same contestant1
             random.shuffle(temp_contestants)
 
             # iterate through contestants
-            for contestant2 in temp_contestants:               
+            for contestant2 in temp_contestants:
                 # if the contestants are not the same person...
                 if contestant1 != contestant2:
                     # if the contestants have the same favorite baseball team OR color...
                     if contestant1.team == contestant2.team or contestant1.color == contestant2.color:
-                        
+
                         # implement 50/50 chance
                         odds = random.choice([0,1])
                         if odds == 1:
@@ -116,9 +116,9 @@ class CreateMatches:
                             # remove each contestant from the list so they are not used again
                             temp_contestants.remove(contestant1)
                             temp_contestants.remove(contestant2)
-                            
+
                             break # break out of for loop
-        
+
         # run loop the number of times needed to create remaining matches
         for i in range(len(temp_contestants)//2):
 
@@ -149,17 +149,17 @@ class GuessMatches:
 
         # initialize matches list that will be used throughout simulation
         self.matches = list()
-        
+
         # iniitialize visited contestants list
         #   - if every contestant remaining in the contestant list has been visited, there are no 100% matches remaining
         contestants_visited = set()
-        
+
         # while there are contestants that have not been visited
         while any(contestant not in contestants_visited for contestant in temp_contestants):
 
             # choose a random first contestant to compare
             contestant1 = random.choice(temp_contestants)
-            
+
             # regenerate contestant if already visited
             while contestant1 in contestants_visited:
                 contestant1 = random.choice(temp_contestants)
@@ -171,39 +171,39 @@ class GuessMatches:
             random.shuffle(temp_contestants)
 
             # iterate through contestants
-            for contestant2 in temp_contestants:    
+            for contestant2 in temp_contestants:
 
                 # if the contestants are not the same person...
                 if contestant1 != contestant2:
                     # if the contestants have the same favorite baseball team and color...
                     if contestant1.team == contestant2.team and contestant1.color == contestant2.color:
-                        
+
                         # add each contestant into a set denoting a perfect match
                         guess = set([contestant1,contestant2])
-                        
+
                         # check if guess in already determined bad matches
                         if guess in self.bad_matches: continue
 
                         # add the set to the list of perfect matches
                         self.matches.append(guess)
-                        
+
                         # remove each contestant from the list so they are not used again
                         temp_contestants.remove(contestant1)
                         temp_contestants.remove(contestant2)
-                        
+
                         # break out of for loop
                         break
 
         # iniitialize visited contestants list
         #   - if every contestant remaining in the contestant list has been visited, there are no 100% matches remaining
         contestants_visited = set()
-        
+
         # while there are contestants that have not been visited
         while any(contestant not in contestants_visited for contestant in temp_contestants):
 
             # choose a random first contestant to compare
             contestant1 = random.choice(temp_contestants)
-            
+
             # regenerate contestant if already visited
             while contestant1 in contestants_visited:
                 contestant1 = random.choice(temp_contestants)
@@ -215,26 +215,26 @@ class GuessMatches:
             random.shuffle(temp_contestants)
 
             # iterate through contestants
-            for contestant2 in temp_contestants:    
+            for contestant2 in temp_contestants:
 
                 # if the contestants are not the same person...
                 if contestant1 != contestant2:
                     # if the contestants have the same favorite baseball team OR color...
                     if contestant1.team == contestant2.team or contestant1.color == contestant2.color:
-                        
+
                         # add each contestant into a set denoting a perfect match
                         guess = set([contestant1,contestant2])
-                        
+
                         # check if guess in already determined bad matches
                         if guess in self.bad_matches: continue
 
                         # add the set to the list of perfect matches
                         self.matches.append(guess)
-                        
+
                         # remove each contestant from the list so they are not used again
                         temp_contestants.remove(contestant1)
                         temp_contestants.remove(contestant2)
-                        
+
                         # break out of for loop
                         break
 
@@ -249,8 +249,8 @@ class GuessMatches:
             # remove the contestants that have been matched from the temporary list so they are not used again
             temp_contestants.remove(list(guess)[0])
             temp_contestants.remove(list(guess)[1])
-        
-        return    
+
+        return
 
 class Simulation:
     '''Simulates game'''
@@ -344,8 +344,6 @@ def start_sim():
 
     # start an instance of the simulation
     sim = Simulation(names)
-    
-    # print(f'{list(sim.game.matches[0])[0].team},{list(sim.game.matches[0])[0].color} + {list(sim.game.matches[0])[1].team},{list(sim.game.matches[0])[1].color}\n{list(sim.game.matches[1])[0].team},{list(sim.game.matches[1])[0].color} + {list(sim.game.matches[1])[1].team},{list(sim.game.matches[1])[1].color}\n{list(sim.game.matches[2])[0].team},{list(sim.game.matches[2])[0].color} + {list(sim.game.matches[2])[1].team},{list(sim.game.matches[2])[1].color}\n{list(sim.game.matches[3])[0].team},{list(sim.game.matches[3])[0].color} + {list(sim.game.matches[3])[1].team},{list(sim.game.matches[3])[1].color}\n{list(sim.game.matches[4])[0].team},{list(sim.game.matches[4])[0].color} + {list(sim.game.matches[4])[1].team},{list(sim.game.matches[4])[1].color}\n{list(sim.game.matches[5])[0].team},{list(sim.game.matches[5])[0].color} + {list(sim.game.matches[5])[1].team},{list(sim.game.matches[5])[1].color}\n{list(sim.game.matches[6])[0].team},{list(sim.game.matches[6])[0].color} + {list(sim.game.matches[6])[1].team},{list(sim.game.matches[6])[1].color}\n{list(sim.game.matches[7])[0].team},{list(sim.game.matches[7])[0].color} + {list(sim.game.matches[7])[1].team},{list(sim.game.matches[7])[1].color}')
 
     if __name__ == '__main__':
         # print a list of all contestants at the start of the game
@@ -373,9 +371,9 @@ def start_sim():
 
         # number of perfect matches is announced
         analyze = sim.analyze_matches()
-        if sim.count != len(sim.game.matches): 
+        if sim.count != len(sim.game.matches):
             if __name__ == '__main__':
-                print(analyze) 
+                print(analyze)
 
         # if this number is equal to the amount of perfect matches needed, the game is over
         if sim.count == len(sim.game.matches):
@@ -401,7 +399,7 @@ def start_sim():
                 print(truth)
 
         # if this is the case, announce there are no new correct matches
-        else: 
+        else:
             if __name__ == '__main__':
                 print('No new correct matches')
 

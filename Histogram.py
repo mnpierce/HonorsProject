@@ -36,7 +36,7 @@ if __name__ == '__main__':
     plt.hist(data2, range=(0,140), bins=140,label='Algorithm 2',alpha=.5,color="royalblue")     # 2- No added attributes, but full use of filtering bad matches (truth booth and special circumstances)
     plt.hist(data3, range=(0,140), bins=140,label='Algorithm 3',alpha=.5,color="orange")        # 3- Correct guesses are saved AND bad matches from truth booth are saved
     plt.hist(data4, range=(0,140), bins=140,label='Algorithm 4',alpha=.5,color="limegreen")     # 4- Correct guesses are saved for future guesses
-    
+
     ### Mean indicators ###
 
     # Get y axis bounds
@@ -64,6 +64,6 @@ if __name__ == '__main__':
     plt.xlabel('Weeks')
     plt.ylabel('Frequency')
     plt.legend(loc='upper right')
-    
+
     # Display
     plt.show()

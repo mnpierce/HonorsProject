@@ -156,9 +156,9 @@ def start_sim():
 
         # number of perfect matches is announced
         analyze = sim.analyze_matches()
-        if sim.count != len(sim.game.matches): 
+        if sim.count != len(sim.game.matches):
             if __name__ == '__main__':
-                print(analyze) 
+                print(analyze)
 
         # if this number is equal to the amount of perfect matches needed, the game is over
         if sim.count == len(sim.game.matches):
@@ -184,7 +184,7 @@ def start_sim():
                 print(truth)
 
         # if this is the case, announce there are no new correct matches
-        else: 
+        else:
             if __name__ == '__main__':
                 print('No new correct matches')
 
