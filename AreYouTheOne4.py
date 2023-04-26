@@ -5,7 +5,6 @@ Uses full random generation BUT removes contestants upon successful truth booth 
 
 # Import random and math modules
 import random
-from math import factorial as fact  # import factorial from math
 
 class Contestant:
     '''Set up contestant objects'''
