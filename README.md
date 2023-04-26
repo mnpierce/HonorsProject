@@ -1,4 +1,4 @@
-## Class: UConn CSE 2050 (Honors Group)
+## Class: UConn CSE 2050 (Honors Group - Prof. Scoggin)
 ## Project: Simulation of MTV's "Are You the One?" by Matt Pierce
 -----------------------------------------------------------------------------------------------------------
 
